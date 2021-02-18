@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 1,
+  "id": "durabilityding",
+  "version": "${version}",
+  "name": "DurabilityDing",
+  "description": "TODO",
+  "authors": [
+    "TomB_134"
+  ],
+  "contributors": [],
+  "contact": {},
+  "license": "MIT",
+  "icon": "assets/durabilityding/icon.png",
+  "environment": "client",
+  "entrypoints": {
+    "main": [
+      "durabilityding.DurabilityDing"
+    ],
+    "client": [],
+    "server": []
+  },
+  "mixins": [
+    "durabilityding.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=0.11.1",
+    "fabric": "*"
+  }
+}

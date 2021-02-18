@@ -7,9 +7,11 @@ import net.fabricmc.api.ModInitializer;
 
 import net.fabricmc.fabric.api.event.player.AttackBlockCallback;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.ItemStack;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.ActionResult;
+import net.minecraft.util.Hand;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -27,8 +29,21 @@ public class DurabilityDing implements ModInitializer {
         log(Level.INFO, "Initializing");
         //TODO: Initializer
 
-        BlockBreakCallback.EVENT.register((world, pos, state, player) -> {
-            System.out.println("Stupid player just broke block yippie");
+        BlockBreakCallback.EVENT.register((world, pos, state, player) -> { //Block break event.
+            if (!world.isClient) { //Check if world is server and return if so.
+                return ActionResult.PASS;
+            }
+
+            ItemStack heldItem = player.getStackInHand(Hand.MAIN_HAND); //Get player's item in main hand.
+
+            if (heldItem.getMaxDamage() == 0) { //If the max damage is equal to zero, then the item used to mine the block has no durability.
+                return ActionResult.PASS;
+            }
+
+            log(Level.INFO, Integer.toString(heldItem.getDamage()));
+
+            log(Level.INFO, "blockbroke");
+
             return ActionResult.PASS;
         });
     }

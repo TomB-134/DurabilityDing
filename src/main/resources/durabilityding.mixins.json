@@ -3,7 +3,9 @@
   "package": "durabilityding.mixin",
   "compatibilityLevel": "JAVA_8",
   "mixins": [
-    "BlockMixin"
+    "BlockMixin",
+    "PlayerEntityMixin",
+    "ItemStackMixin"
   ],
   "client": [],
   "server": [],

@@ -17,7 +17,7 @@ public class BlockMixin {
 
     //Simple hook into block break method that triggers an event.
     @Inject(at = @At("TAIL"), method = "onBreak", cancellable = true) //Inject into block break method.
-    public void onBreak(World world, BlockPos pos, BlockState state, PlayerEntity player, CallbackInfo info) {
+    private void onBreak(World world, BlockPos pos, BlockState state, PlayerEntity player, CallbackInfo info) {
         ActionResult result = BlockBreakCallback.EVENT.invoker().blockBreak(world,pos,state,player); //Call custom BlockBreakCallback event.
 
         if (result == ActionResult.FAIL) {

@@ -18,7 +18,7 @@ public class BlockMixin {
     //Simple hook into block break method that triggers an event.
     @Inject(at = @At("TAIL"), method = "onBreak", cancellable = true) //Inject into block break method.
     private void onBreak(World world, BlockPos pos, BlockState state, PlayerEntity player, CallbackInfo info) {
-        ActionResult result = BlockBreakCallback.EVENT.invoker().blockBreak(world,pos,state,player); //Call custom BlockBreakCallback event.
+        ActionResult result = BlockBreakCallback.EVENT.invoker().blockBreak(world,pos,state,player); //Invoke BlockBreakCallback event.
 
         if (result == ActionResult.FAIL) {
             info.cancel(); //If action result is FAIL do not break the block. Unnecessary for this mod because we aren't doing any logic that would warrant canceling.
